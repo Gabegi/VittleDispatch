@@ -1,0 +1,50 @@
+﻿@page
+@model Futures.Pages.ZonesModel
+@{
+}
+
+<h1>All Zones</h1>
+
+<h2>Find a zone by its ID</h2>
+<form asp-page-handler="Id" method="post" style="height:200px; width:200px">
+    <div class="input-group">
+        <input class="form-control" asp-for="Zone.zone_id" />
+            <button type="submit" class="btn btn-primary"> Search</button>
+    </div>
+</form>
+<h2>Find a zone by its Name</h2>
+<form asp-page-handler="Name" method="post" style="height:200px; width:200px">
+    <div class="input-group">
+        <input class="form-control" asp-for="Zone.zone_description" />
+            <button type="submit" class="btn btn-primary"> Search</button>
+    </div>
+</form>
+
+
+
+<h2>Zone Information</h2>
+<p>
+    <a asp-page="RestaurantCreate">Create New</a>
+</p>
+<table class="table" border="1">
+    <thead>
+            <th>Zone Id </th>    
+            <th>Zone Description </th>
+    </thead>
+    @if(Model.Zones is not null)
+    {
+           @foreach(var zone in Model.Zones)
+           {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => zone.zone_id) </td>
+                    <td>@Html.DisplayFor(modelItem => zone.zone_description) </td>
+                    <td>
+                        <a asp-page="./ZoneEdit" asp-route-id="@zone.zone_id">Edit</a>
+                        <a asp-page="./ZoneDelete" asp-route-id="@zone.zone_id">Delete</a>
+                     </td>
+                </tr>
+           } 
+    }
+</table>
+
+</pre>

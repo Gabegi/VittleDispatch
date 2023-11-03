@@ -1,0 +1,67 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: tfvalidate
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:
+          - task: TerraformInstaller@0
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV3@3
+            
+            displayName: init
+            inputs:
+              workingDirectory: "$(Build.SourcesDirectory)/Azure_Infrastructure_Terraform"
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(1)(56ae69af-fc48-4b21-b3ae-8c981fe035a0)'
+              backendAzureRmResourceGroupName: 'rg-vittles-dispatch'
+              backendAzureRmStorageAccountName: 'storageaccountvittles'
+              backendAzureRmContainerName: 'backend'
+              backendAzureRmKey: 'cCHG05VrcMOOxKQoIGeirCFwVg6TkeqUsddjmuzaQ2hBO0mygsmOokrN63r+jrs5Rb/xFTY1GsYK+AStvWTOiw=='
+
+  - stage: tfdeploy
+    dependsOn: tfvalidate
+    jobs:
+      - job: apply
+        steps: 
+          - task: TerraformInstaller@0
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV3@3
+            displayName: init
+            inputs:
+              workingDirectory: "$(Build.SourcesDirectory)/Azure_Infrastructure_Terraform"
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(1)(56ae69af-fc48-4b21-b3ae-8c981fe035a0)'
+              backendAzureRmResourceGroupName: 'rg-vittles-dispatch'
+              backendAzureRmStorageAccountName: 'storageaccountvittles'
+              backendAzureRmContainerName: 'backend'
+              backendAzureRmKey: 'cCHG05VrcMOOxKQoIGeirCFwVg6TkeqUsddjmuzaQ2hBO0mygsmOokrN63r+jrs5Rb/xFTY1GsYK+AStvWTOiw=='
+
+          - task: TerraformTaskV3@3
+            displayName: plan
+            inputs:
+              workingDirectory: "$(Build.SourcesDirectory)/Azure_Infrastructure_Terraform"
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(1)(56ae69af-fc48-4b21-b3ae-8c981fe035a0)'
+          - task: TerraformTaskV3@3
+            displayName: apply
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(1)(56ae69af-fc48-4b21-b3ae-8c981fe035a0)'

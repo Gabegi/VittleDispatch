@@ -1,0 +1,23 @@
+alter table dishes add constraint FK_restaurant_id
+    foreign key (restaurant_id) REFERENCES  restaurants(restaurant_id);
+
+alter table order_dishes add constraint FK_order_id
+    foreign key (order_id) REFERENCES  orders(order_id);
+
+alter table order_dishes add constraint FK_dish_id
+    foreign key (dish_id) REFERENCES  dishes(dish_id);
+
+alter table orders add constraint FK_user_id
+    foreign key (id_user) REFERENCES  users(id_user);
+
+alter table orders add constraint FK_rider_id
+    foreign key (rider_id) REFERENCES  riders(rider_id);
+
+alter table restaurants add constraint FK_food_category
+    foreign key (category_name) REFERENCES  food_category(category_name);
+
+alter table restaurants add constraint FK_zone_id
+    foreign key (zone_id) REFERENCES  zones(zone_id);
+
+alter table riders add constraint FK_zone_id_rider
+    foreign key (zone_id) REFERENCES  zones(zone_id);

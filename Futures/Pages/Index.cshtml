@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}  
+
+
+
+<body class=" @ViewData["BackgroundClass"]">
+    <div class="text-center align-content-center align-items-center" style="background: white;">
+        <h1 class="display-4" >Welcome to Vittles Dispatch</h1>
+        <p class="display-10" >The best food delivery management app</p>
+        <p>Check all current orders now by clicking on this <a asp-page="/Orders"> Link </a>.</p>
+        
+        <p><img src="~/dutch-indonesian-food.jpg" alt="Indonesian Food" width="350" height="250"></p>
+    </div>
+    <div class="b-example-divider"></div>
+
+</body>
+

@@ -1,0 +1,63 @@
+CREATE TABLE dishes (
+	dish_id int  PRIMARY KEY,
+    dish_name varchar(255),
+    dish_description varchar(255) NOT NULL,
+    restaurant_id int NOT NULL,
+    price decimal(18,2) NOT NULL,
+	require_18 bit
+);
+
+CREATE TABLE food_category (
+	category_name varchar (255) PRIMARY KEY,
+	category_description varchar (255) NOT NULL
+
+);
+
+CREATE TABLE order_dishes (
+	order_id int,
+	dish_id int NOT NULL,
+	quantity int NOT NULL  
+);
+
+CREATE TABLE orders (
+	order_id int PRIMARY KEY,
+	id_user int NOT NULL,
+	rider_id int NOT NULL,
+	order_status varchar (100),
+	created_at TIMESTAMP
+    
+);
+
+CREATE TABLE restaurants (
+    restaurant_id int PRIMARY KEY,
+	restaurant_name varchar (255),
+	category_name varchar (255),
+	restaurant_address varchar (255),
+	zone_id int NOT NULL
+    
+);
+
+CREATE TABLE riders (
+    rider_id int PRIMARY KEY,
+	rider_name varchar (255),
+	rider_surname varchar (255),
+	rider_availability varchar (255),
+	zone_id int
+);
+
+CREATE TABLE users (
+	id_user int PRIMARY KEY,
+	full_name varchar (255),
+	created_at TIMESTAMP,
+	last_update DATETIME NOT NULL,
+	user_address varchar(255),
+	is_over_18 bit
+	
+);
+
+CREATE TABLE zones (
+	zone_id int PRIMARY KEY,
+	zone_description varchar (255) NOT NULL
+
+);
+

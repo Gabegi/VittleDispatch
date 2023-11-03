@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model RestaurantEditModel
+@{
+}
+<h1>Edit</h1>
+
+<h4>Restaurant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="restaurant.RestaurantId" />
+            <div class="form-group">
+                <label asp-for="restaurant.RestaurantName" class="control-label"></label>
+                <input asp-for="restaurant.RestaurantName" class="form-control" />
+                <span asp-validation-for="restaurant.RestaurantName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="restaurant.CategoryName" class="control-label"></label>
+                <input asp-for="restaurant.CategoryName" class="form-control" />
+                <span asp-validation-for="restaurant.CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="restaurant.RestaurantAddress" class="control-label"></label>
+                <input asp-for="restaurant.RestaurantAddress" class="form-control" />
+                <span asp-validation-for="restaurant.RestaurantAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="restaurant.ZoneId" class="control-label"></label>
+                <input asp-for="restaurant.ZoneId" class="form-control" />
+                <span asp-validation-for="restaurant.ZoneId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

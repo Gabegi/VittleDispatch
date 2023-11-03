@@ -1,0 +1,61 @@
+﻿@page "{restaurant_id?}"
+@model RestaurantsModel
+@{
+    ViewData["Title"] = "Restaurant";
+}
+<pre>
+
+<h1>All Restaurants</h1>
+<h2>Find a restaurant by its ID</h2>
+<form asp-page-handler="Id" method="post" style="height:200px; width:200px">
+    <div class="input-group">
+        <input class="form-control" asp-for="restaurant_id" />
+            <button type="submit" class="btn btn-primary"> Search</button>
+    </div>
+</form>
+<h2>Find a restaurant by its Name</h2>
+<form asp-page-handler="Name" method="post" style="height:200px; width:200px">
+    <div class="input-group">
+        <input class="form-control" asp-for="restaurant_name" />
+            <button type="submit" class="btn btn-primary"> Search</button>
+    </div>
+</form>
+
+
+
+<h2>Restaurant Information</h2>
+<p>
+    <a asp-page="RestaurantCreate">Create New</a>
+</p>
+<table class="table table-dark">
+    <thead class="thead-light">
+            <th scope="col">Restaurant Id </th>    
+            <th scope="col">Restaurant Name </th>  
+            <th scope="col">Category Name </th>  
+            <th scope="col">Restaurant Address </th>  
+            <th scope="col"> <a asp-page="Zones">Zones</a></th>  
+    </thead>
+    @if(Model.RestaurantList is not null)
+    {
+           @foreach(var restaurant in Model.RestaurantList)
+           {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => restaurant.RestaurantId) </td>
+                    <td>@Html.DisplayFor(modelItem => restaurant.RestaurantName) </td>
+                    <td>@Html.DisplayFor(modelItem => restaurant.CategoryName) </td>
+                    <td>@Html.DisplayFor(modelItem => restaurant.RestaurantAddress) </td>
+                    <td> @Html.DisplayFor(modelItem => restaurant.ZoneId)</td>
+                    <td>
+                        <a asp-page="./RestaurantEdit" asp-route-id="@restaurant.RestaurantId">Edit</a>
+                        <a asp-page="./RestaurantDelete" asp-route-id="@restaurant.RestaurantId">Delete</a>
+                     </td>
+                </tr>
+           } 
+    }
+</table>
+
+
+</pre>
+
+
+

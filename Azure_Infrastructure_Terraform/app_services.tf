@@ -27,10 +27,10 @@ resource "azurerm_windows_web_app" "app-frontend" {
   }
 
   app_settings = {
-    "APPINSIGHTS_INSTRUMENTATIONKEY"                  = "3a437649-558f-4bb3-ad24-0a12359a7d57"
+    "APPINSIGHTS_INSTRUMENTATIONKEY"                  = "key"
     "APPINSIGHTS_PROFILERFEATURE_VERSION"             = "1.0.0"
     "APPINSIGHTS_SNAPSHOTFEATURE_VERSION"             = "1.0.0"
-    "APPLICATIONINSIGHTS_CONNECTION_STRING"           = "InstrumentationKey=3a437649-558f-4bb3-ad24-0a12359a7d57;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+    "APPLICATIONINSIGHTS_CONNECTION_STRING"           = "InstrumentationKey=key;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
     "ApplicationInsightsAgent_EXTENSION_VERSION"      = "~2"
     "DiagnosticServices_EXTENSION_VERSION"            = "~3"
     "InstrumentationEngine_EXTENSION_VERSION"         = "disabled"
@@ -82,10 +82,10 @@ resource "azurerm_windows_web_app" "app-backend" {
 
   app_settings = {
 
-    "APPINSIGHTS_INSTRUMENTATIONKEY"                  = "3a437649-558f-4bb3-ad24-0a12359a7d57"
+    "APPINSIGHTS_INSTRUMENTATIONKEY"                  = "key"
     "APPINSIGHTS_PROFILERFEATURE_VERSION"             = "1.0.0"
     "APPINSIGHTS_SNAPSHOTFEATURE_VERSION"             = "1.0.0"
-    "APPLICATIONINSIGHTS_CONNECTION_STRING"           = "InstrumentationKey=3a437649-558f-4bb3-ad24-0a12359a7d57;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+    "APPLICATIONINSIGHTS_CONNECTION_STRING"           = "InstrumentationKey=key;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
     "ApplicationInsightsAgent_EXTENSION_VERSION"      = "~2"
     "DiagnosticServices_EXTENSION_VERSION"            = "~3"
     "InstrumentationEngine_EXTENSION_VERSION"         = "disabled"
